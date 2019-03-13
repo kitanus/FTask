@@ -27,7 +27,7 @@ class ControllerShow extends AbstractController
     {
         $this->data = $this->getModel(new ModelShow());
 
-        if($_POST["action"] == "createPdf" || $_POST["action"] == "showPdf")
+        if(!empty($_POST["action"]) && ($_POST["action"] == "createPdf" || $_POST["action"] == "showPdf"))
         {
             $this->mpdf->SetTitle('Power of attorney');
 
@@ -114,7 +114,7 @@ class ControllerShow extends AbstractController
             "{dateDoc}" => $this->data["powerOfAttorney"][0]["date"],
             "{dateEndDoc}" => $this->data["powerOfAttorney"][0]["date_end"],
             "{position}" => $this->data["user"][0]["positionName"],
-            "{FIO}" => $this->data["user"][0]["surname"]." ".$this->data["user"][0]["name"]." ".$this->data["user"][0]["patronymic"],
+            "{FIO}" => $this->data["user"][0]["surname"]." ".$this->data["user"][0]["userName"]." ".$this->data["user"][0]["patronymic"],
             "{provider}" => $this->data["provider"][0]["name"],
             "{OKUD}" => $this->data["powerOfAttorney"][0]["code"],
             "{OKPO}" => $this->data["orgMain"][0]["OKPO"],

@@ -28,106 +28,114 @@ class ModelShow extends AbstractModel
             $this->insertPowerOfAttorney($powerAttorney);
         }
 
-        $powerOfAttorney = $this->db
-            ->setSelect("power_of_attorney")
-            ->setWhere("id = {$idPdf}")
-            ->setQuery();
+        if(!empty($_POST["action"]) && $_POST["action"] == "showPdf")
+        {
+            $powerOfAttorney = $this->db
+                ->setSelect("power_of_attorney")
+                ->setWhere("id = {$idPdf}")
+                ->setQuery();
 
-        $datePowerOfAttorney = str_replace("-", "_", $powerOfAttorney[0]["date"]);
-        $powerOfAttorney[0]["date"] = $this->getFullDate($powerOfAttorney[0]["date"]);
-        $powerOfAttorney[0]["date_end"] = $this->getFullDate($powerOfAttorney[0]["date_end"]);
+            $datePowerOfAttorney = str_replace("-", "_", $powerOfAttorney[0]["date"]);
+            $powerOfAttorney[0]["date"] = $this->getFullDate($powerOfAttorney[0]["date"]);
+            $powerOfAttorney[0]["date_end"] = $this->getFullDate($powerOfAttorney[0]["date_end"]);
 
-        $org = $this->db
-            ->setSelect("organization", [
-                "organization.id",
-                "organization.name AS orgName",
-                "INN",
-                "KPP",
-                "OKPO",
-                "postcode",
-                "phone",
-                "director.name AS directorName",
-                "director.surname",
-                "director.patronymic",
-                "office.number AS officeNumb",
-                "building.number AS buildingNumb",
-                "house.number AS houseNumb",
-                "type_of_passage.name AS typePassageName",
-                "direction.name AS directionName",
-                "city.name AS cityName",
-                "view_of_the_subject_of_the_country.name AS vSubCountryName",
-                "subjects_of_the_country.name AS subCountryName",
-                "bank.name AS bankName",
-                "bank.BIK",
-                "bank.сorresponding_account",
-                "bank.сhecking_account"
-            ])
-            ->setLeftJoin("user", "organization",true, "director", "director")
-            ->setLeftJoin("office", "organization")
-            ->setLeftJoin("building", "office")
-            ->setLeftJoin("house", "building")
-            ->setLeftJoin("direction", "house")
-            ->setLeftJoin("type_of_passage", "direction")
-            ->setLeftJoin("city", "direction")
-            ->setLeftJoin("subjects_of_the_country", "city")
-            ->setLeftJoin("view_of_the_subject_of_the_country", "subjects_of_the_country")
-            ->setLeftJoin("bank","organization");
+            $org = $this->db
+                ->setSelect("organization", [
+                    "organization.id",
+                    "organization.name AS orgName",
+                    "INN",
+                    "KPP",
+                    "OKPO",
+                    "postcode",
+                    "phone",
+                    "director.name AS directorName",
+                    "director.surname",
+                    "director.patronymic",
+                    "office.number AS officeNumb",
+                    "building.number AS buildingNumb",
+                    "house.number AS houseNumb",
+                    "type_of_passage.name AS typePassageName",
+                    "direction.name AS directionName",
+                    "city.name AS cityName",
+                    "view_of_the_subject_of_the_country.name AS vSubCountryName",
+                    "subjects_of_the_country.name AS subCountryName",
+                    "bank.name AS bankName",
+                    "bank.BIK",
+                    "bank.сorresponding_account",
+                    "bank.сhecking_account"
+                ])
+                ->setLeftJoin("user", "organization",true, "director", "director")
+                ->setLeftJoin("office", "organization")
+                ->setLeftJoin("building", "office")
+                ->setLeftJoin("house", "building")
+                ->setLeftJoin("direction", "house")
+                ->setLeftJoin("type_of_passage", "direction")
+                ->setLeftJoin("city", "direction")
+                ->setLeftJoin("subjects_of_the_country", "city")
+                ->setLeftJoin("view_of_the_subject_of_the_country", "subjects_of_the_country")
+                ->setLeftJoin("bank","organization");
 
-        $mainOrg = $org
-            ->setWhere("organization.id = {$powerOfAttorney[0]["organization_id"]}")
-            ->setQuery();
+            $mainOrg = $org
+                ->setWhere("organization.id = {$powerOfAttorney[0]["organization_id"]}")
+                ->setQuery();
 
-        $consumer = $org
-            ->setWhere("organization.id = {$powerOfAttorney[0]["consumer_id"]}")
-            ->setQuery();
+            $consumer = $org
+                ->setWhere("organization.id = {$powerOfAttorney[0]["consumer_id"]}")
+                ->setQuery();
 
-        $mainOrg[0]["fullName"] = $this->getFullOrg($mainOrg);
-        $consumer[0]["fullName"] = $this->getFullOrg($consumer);
+            $mainOrg[0]["fullName"] = $this->getFullOrg($mainOrg);
+            $consumer[0]["fullName"] = $this->getFullOrg($consumer);
 
-        $provider = $this->db
-            ->setSelect("organization", ["name"])
-            ->setWhere("organization.id = {$powerOfAttorney[0]["provider_id"]}")
-            ->setQuery();
+            $provider = $this->db
+                ->setSelect("organization", ["name"])
+                ->setWhere("organization.id = {$powerOfAttorney[0]["provider_id"]}")
+                ->setQuery();
 
-        $bank = $this->db
-            ->setSelect("bank", ["id","name","BIK","сorresponding_account","сhecking_account"])
-            ->setWhere("id = {$powerOfAttorney[0]["bank_id"]}")
-            ->setQuery();
+            $bank = $this->db
+                ->setSelect("bank", ["id","name","BIK","сorresponding_account","сhecking_account"])
+                ->setWhere("id = {$powerOfAttorney[0]["bank_id"]}")
+                ->setQuery();
 
-        $user = $this->db
-            ->setSelect("user", [
-                "user.name AS userName",
-                "surname",
-                "patronymic",
-                "position.name AS positionName",
-                "series",
-                "number",
-                "issued_by",
-                "date_of_issue"
-            ])
-            ->setLeftJoin("position", "user")
-            ->setLeftJoin("passport", "user")
-            ->setWhere("user.id = {$powerOfAttorney[0]["issued_to_user_id"]}")
-            ->setQuery();
-        $user[0]["date_of_issue"] = $this->getFullDate($user[0]["date_of_issue"]);
+            $user = $this->db
+                ->setSelect("user", [
+                    "user.name AS userName",
+                    "surname",
+                    "patronymic",
+                    "position.name AS positionName",
+                    "series",
+                    "number",
+                    "issued_by",
+                    "date_of_issue"
+                ])
+                ->setLeftJoin("position", "user")
+                ->setLeftJoin("passport", "user")
+                ->setWhere("user.id = {$powerOfAttorney[0]["issued_to_user_id"]}")
+                ->setQuery();
+            $user[0]["date_of_issue"] = $this->getFullDate($user[0]["date_of_issue"]);
 
-        $inventoryItems = $this->db
-            ->setSelect("inventory_items", ["inventory_items_number", "material_values", "name", "quantity"])
-            ->setLeftJoin("unit_of_measurement", "inventory_items")
-            ->setWhere("power_of_attorney_id = {$idPdf}")
-            ->setQuery();
+            $inventoryItems = $this->db
+                ->setSelect("inventory_items", ["inventory_items_number", "material_values", "name", "quantity"])
+                ->setLeftJoin("unit_of_measurement", "inventory_items")
+                ->setWhere("power_of_attorney_id = {$idPdf}")
+                ->setQuery();
+
+            $this->arrayMerge([
+                ["orgMain" => $mainOrg],
+                ["consumer" => $consumer],
+                ["provider" => $provider],
+                ["bank" => $bank],
+                ["user" => $user],
+                ["powerOfAttorney" => $powerOfAttorney],
+                ["inventoryItems" => $inventoryItems],
+                ["datePowerOfAttorney" => $datePowerOfAttorney],
+                ["id" => $idPdf]
+            ]);
+        }
+
+
 
         $this->arrayMerge([
-            ["allPowerOfAttorney" => $powerAttorney],
-            ["orgMain" => $mainOrg],
-            ["consumer" => $consumer],
-            ["provider" => $provider],
-            ["bank" => $bank],
-            ["user" => $user],
-            ["powerOfAttorney" => $powerOfAttorney],
-            ["inventoryItems" => $inventoryItems],
-            ["datePowerOfAttorney" => $datePowerOfAttorney],
-            ["id" => $idPdf]
+            ["allPowerOfAttorney" => $powerAttorney]
         ]);
 
         return $this->data;
