@@ -15,14 +15,23 @@ abstract class AbstractModel
     protected $page;
     protected $final;
 
+    /**
+     * AbstractModel constructor.
+     */
     public function __construct()
     {
         $this->db = new MySQL();
-        $this->page = ["page" => $_GET["page"]];
-        $words = $this->db->setSelect("words")->setWhere("useWord='1'");
-        $this->final = $this->getListWords($words->setQuery());
+
+        $this->arrayMerge([
+            ["fullUser" => $this->getFullUser()]
+        ]);
     }
 
+    /**
+     * Обьединение массивов
+     *
+     * @param array $arr
+     */
     protected function arrayMerge($arr = [])
     {
         foreach ($arr as $key => $value)
@@ -34,20 +43,25 @@ abstract class AbstractModel
         }
     }
 
-    protected function getListWords($words)
+    protected function getFullUser()
     {
-        $arrFinal = [];
-        foreach($words as $key => $value)
-        {
-            $arr = [];
-            foreach ($value as $key2 => $value2)
-            {
-                $arr[$key2] =  $value2;
-            }
-            $arrFinal[] = $arr;
-        }
+        $user = $this->db
+            ->setSelect("user", ["user.name as userName", "surname", "patronymic", "status.name AS statusName"])
+            ->setLeftJoin("status", "user")
+            ->setWhere("user.id = '{$_SESSION["idUser"]}'")
+            ->setQuery();
 
-        return ["Words" => $arrFinal];
+        $status = ($user[0]["statusName"] == "administrator") ? "<a href='/admin'>Администратор</a>" : "Пользователь";
+
+        return $status." ".$user[0]["surname"]." ".$user[0]["userName"]." ".$user[0]["patronymic"];
+    }
+
+    protected function header($page)
+    {
+        $host  = $_SERVER['HTTP_HOST'];
+        $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+
+        header("Location: http://$host$uri/$page");
     }
 
     public abstract function getData();

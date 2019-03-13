@@ -14,6 +14,8 @@ class Controller
 {
     public static function main()
     {
+        session_start();
+
         Route::start();
     }
 }

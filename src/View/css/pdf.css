@@ -1,0 +1,157 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+}
+
+h1, h2, h3{
+    text-align: center;
+}
+
+p, table{
+    text-align: center;
+}
+
+table{
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 0px;
+}
+
+td{
+    padding: 1px;
+    border: 1px solid black;
+}
+
+u{
+    text-decoration: underline;
+}
+
+header{
+    margin-bottom: 10px;
+    border-bottom: 1px solid gray;
+}
+
+sup{
+    text-align: center;
+    display: block;
+}
+
+main{
+    margin: 80px;
+    font-size: 0.9em;
+}
+
+#tableHeader{
+    border-spacing: 0px;
+    width: 710px;
+    float: right;
+    font-size: 1em;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#tableHeader td{
+    border-color: white;
+}
+
+.tablePdf{
+    width: 100%;
+}
+
+.tablePdf td{
+    border-color: white;
+}
+
+.tableBank{
+    width: 100%;
+}
+
+.tableBank tr td:nth-child(1){
+    width: 180px;
+}
+
+#numberZnak{
+    width: 5%;
+}
+
+.topTable td{
+    font-size: 0.8em;
+}
+
+#inventoryMaterial{
+    width: 100%;
+    font-size: 0.7em;
+}
+
+.underText{
+    font-size: 0.6em;
+    padding: 0px;
+}
+
+table td.overText{
+    text-align: left;
+    font-size: 0.8em;
+    border-bottom: 1px solid black;
+}
+
+#trName td.overText{
+    width: 15%;
+}
+
+.mainPosition{
+    width: 20%;
+    text-align: left;
+    font-size: 0.8em;
+    font-weight: bold
+}
+
+.namePole{
+    text-align: right;
+    font-size: 0.8em;
+}
+
+.mp{
+    text-align: center;
+}
+
+.namePowerOfAttorney td:first-child{
+    text-align: right;
+}
+
+.namePowerOfAttorney td:nth-child(2) h3{
+    text-align: left;
+}
+
+.verySmallText{
+    font-size: 0.6em;
+    text-align: right
+}
+
+#tableHeader .codes{
+    font-weight: bold;
+    padding: 3px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    font-size: 0.8em;
+}
+
+#tableHeader .okud{
+    border-top: 2px solid black;
+    border-bottom: 1px solid black;
+}
+
+#tableHeader .okpo{
+    border-bottom: 2px solid black;
+    vertical-align: bottom;
+}
+
+.cutLine{
+    border-bottom: 1px solid black;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+@page {
+    margin: 2% -3%;
+}

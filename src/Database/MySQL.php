@@ -11,7 +11,7 @@ namespace Src\Database;
 
 class MySQL
 {
-    const DATABASE = "EnglishTest";
+    const DATABASE = "FTask";
     /**
      * Ссылка на подключение к БД
      * @var null
@@ -50,7 +50,15 @@ class MySQL
             $list = "";
             foreach($fields as $key => $value)
             {
-                $list .= "`{$value}`, ";
+                if(strpos($value, ".") === false)
+                {
+                    $list .= "`{$value}`, ";
+                }
+                else
+                {
+                    $parts = explode(".", $value);
+                    $list .= "`{$parts[0]}`.{$parts[1]}, ";
+                }
             }
             $fields = substr($list, 0, -2);
         }
@@ -60,14 +68,30 @@ class MySQL
         return $this;
     }
 
-    public function setLeftJoin($newTable, $oldTable, $new = false)
+    public function setLeftJoin($newTable, $oldTable, $new = false, $nickname = null, $oldCell = null)
     {
         if($new === true)
         {
             $this->leftJoin = "";
         }
 
-        $this->leftJoin .= "LEFT JOIN `{$newTable}` ON {$oldTable}.{$newTable}_id = {$newTable}.id ";
+        if($nickname != null)
+        {
+            $newTableNickname = $nickname;
+            $nickname = "AS `{$nickname}`";
+        }else{
+            $nickname = "";
+            $newTableNickname = $newTable;
+        }
+
+        if($oldCell == null)
+        {
+            $this->leftJoin .= "LEFT JOIN `{$newTable}` {$nickname} ON {$oldTable}.{$newTable}_id = {$newTableNickname}.id ";
+        }
+        else
+        {
+            $this->leftJoin .= "LEFT JOIN `{$newTable}` {$nickname} ON {$oldTable}.{$oldCell}_id = {$newTableNickname}.id ";
+        }
 
         return $this;
     }

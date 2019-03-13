@@ -8,12 +8,14 @@
 
 namespace Src\Core;
 
+use Src\ControllerFactory;
+
 class Route
 {
 
     public static function start()
     {
-        $controller_name = 'Start';
+        $controller_name = 'Main';
         $action_name = 'index';
 
         $routes = explode('/', $_SERVER['REQUEST_URI']);

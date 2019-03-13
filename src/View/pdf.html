@@ -1,0 +1,247 @@
+<main>
+    <table class="topTable" style="width: 100%">
+        <tr>
+            <td>Номер доверенности</td>
+            <td>Дата выдачи</td>
+            <td>Срок действия</td>
+            <td>Должность и фамилия лица, которому выдана доверенность</td>
+            <td>Расписка в получении доверенности</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>{numberDoc}</td>
+            <td>{dateDoc}</td>
+            <td>{dateEndDoc}</td>
+            <td>{position}, {FIO}</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <table class="topTable">
+        <tr>
+            <td>Поставщик</td>
+            <td>Номер и дата наряда (замещающего наряд документа) или извещения</td>
+            <td>Номер и дата документа, подтверждающего выполнение поручения</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>{provider}</td>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td colspan="3" class="cutLine">Линия среза</td>
+        </tr>
+    </table>
+
+    <table id="tableHeader">
+        <tr>
+            <td colspan="3"></td>
+            <td colspan="3" class="verySmallText">Типовая межотраслевая форма № М-2</td>
+        </tr>
+        <tr>
+            <td colspan="2"></td>
+            <td colspan="4" class="verySmallText">Утверждена постановлением Госкомстата России от 30.10.97 № 71а</td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+            <td style="font-size: 0.8em; border: 1px solid black;">Коды</td>
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+            <td colspan="2" style="text-align: right; font-size: 0.9em;">Форма по ОКУД</td>
+            <td class="codes okud">{OKUD}</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: bottom;">Организация</td>
+            <td colspan="3" class="overText">
+                {mainOrganization}
+            </td>
+            <td style="width: 70px; vertical-align: bottom; text-align: right;">по ОКПО</td>
+            <td class="codes okpo">{OKPO}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="3" class="underText">наименование организации</td>
+            <td colspan="2"></td>
+        </tr>
+    </table>
+    <table class="tablePdf">
+        <tr class="namePowerOfAttorney">
+            <td colspan="2" style="text-align: right"><h3>ДОВЕРЕННОСТЬ №</h3></td>
+            <td class="overText"><h3>{numberDoc}</h3></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="height: 10px"></td>
+        </tr>
+        <tr id="trName">
+            <td style="font-size: 0.8em; text-align: right; width: 30%;">Дата выдачи:</td>
+            <td class="overText">{dateDoc}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size: 0.8em; text-align: right;">Доверенность действительна по</td>
+            <td class="overText">{dateEndDoc}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="3" class="overText">
+                {Consumer}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="underText">наименование потребителя и его адрес</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="overText">
+                {Consumer}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="underText">наименование плательщика и его адрес</td>
+        </tr>
+    </table>
+    <table class="tablePdf tableBank" style="border-bottom: 1px solid black;">
+        <tr>
+            <td style="text-align: right; vertical-align: top;">Счет № </td>
+            <td colspan="2" class="overText">
+                {rs}, в банке {bank}
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2" class="underText">наименование банка</td>
+        </tr>
+        <tr>
+            <td id="FIO" class="namePole">Доверенность выдана </td>
+            <td colspan="2" style="padding: 0px;">
+                <table style="margin: 0px; width: 100%;">
+                    <tr>
+                        <td class="overText">{position}</td>
+                        <td style="width: 20px"></td>
+                        <td class="overText">{FIO}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="underText">должность</td>
+            <td class="underText">фамилия, имя, отчество</td>
+        </tr>
+        <tr>
+            <td class="namePole">Паспорт: серия </td>
+            <td colspan="2" style="padding: 0px;">
+                <table style="margin: 0px; width: 100%;">
+                    <tr>
+                        <td class="overText">{series}</td>
+                        <td id="numberZnak"> № </td>
+                        <td class="overText">{numberPassport}</td></tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="namePole">Кем выдан </td>
+            <td colspan="2" class="overText">{byIssued}</td>
+        </tr>
+        <tr>
+            <td class="namePole">Дата выдачи </td>
+            <td colspan="2" class="overText">{datePassport}</td>
+        </tr>
+        <tr>
+            <td class="namePole">На получение от </td>
+            <td colspan="2" class="overText">{provider}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2" class="underText">наименование поставщика</td>
+        </tr>
+        <tr>
+            <td class="namePole">материальных ценностей по </td>
+            <td colspan="2" class="overText">{materialItems}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2" class="underText">наименование, номер и дата документа</td>
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+        </tr>
+    </table>
+    <h4 style="text-align: center">Печень товарно-материальных ценностей, подлежащих получению</h4>
+    <table id="inventoryMaterial">
+        <tr>
+            <td>Номер по порядку</td>
+            <td>Материальные ценности</td>
+            <td>Единица измерения</td>
+            <td>Колличество (прописью)</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>{numberMaterial1}</td>
+            <td>{nameMaterial1}</td>
+            <td>{kindMaterial1}</td>
+            <td>{countMaterial1}</td>
+        </tr>
+    </table>
+    <br>
+    <table class="tablePdf" style="width: 100%">
+        <tr>
+            <td colspan="3" class="namePole">Подпись лица, получившего доверенность</td>
+            <td></td>
+            <td class="overText"></td>
+            <td style="text-align: left; font-size: 0.8em;">удостоверяем</td>
+        </tr>
+        <tr>
+            <td colspan="6" style="height: 30px"></td>
+        </tr>
+        <tr>
+            <td class="mainPosition">Руководитель</td>
+            <td></td>
+            <td class="overText"></td>
+            <td></td>
+            <td class="overText">{directorFIO}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="2"></td>
+            <td class="underText">Подпись</td>
+            <td></td>
+            <td class="underText">Расшифровка подписи</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="namePole mp">М.П.</td>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td class="mainPosition">Главный бухгалтер</td>
+            <td style="width: 5%"></td>
+            <td class="overText"></td>
+            <td style="width: 5%"></td>
+            <td class="overText">{mainAccountant}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="2"></td>
+            <td class="underText">подпись</td>
+            <td></td>
+            <td class="underText">расшифровка подписи</td>
+            <td></td>
+        </tr>
+    </table>
+</main>

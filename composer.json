@@ -1,0 +1,18 @@
+{
+    "name": "VL",
+    "description": "Project v.1",
+    "license": "private",
+    "keywords": [
+        "framework"
+    ],
+    "homepage": "https://FTask/",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src"
+        }
+    },
+    "require": {
+        "mpdf/mpdf": "^7.1",
+        "swiftmailer/swiftmailer": "^6.1"
+    }
+}

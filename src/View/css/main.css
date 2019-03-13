@@ -1,0 +1,162 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    /*border: 1px solid black;*/
+}
+
+h1, h2, h3{
+    text-align: center;
+}
+
+main{
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p, table{
+    margin: 5px;
+    text-align: center;
+}
+
+table{
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 0px;
+}
+
+td{
+    padding: 3px;
+    border: 1px solid black;
+}
+
+u{
+    text-decoration: underline;
+}
+
+.butts{
+    padding: 5px;
+    background-color: white;
+    border-radius: 5px;
+    width: 150px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    display: block;
+}
+
+.butts:hover{
+    background-color: gray;
+    border-color: white;
+}
+
+#name{
+    display: block;
+    width: 70%;
+    float: left;
+}
+
+#tableCode{
+    float:right;
+}
+
+header{
+    margin-bottom: 10px;
+    border-bottom: 1px solid gray;
+    height: 85px;
+}
+
+#backMain{
+    display: block;
+    padding: 8px;
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 5px;
+    width: 100px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 22px;
+    float: left;
+    margin-left: 45%;
+    margin-top: 10px;
+}
+
+#backMain:hover{
+    background-color: black;
+    border-color: white;
+    color: white;
+}
+
+.aMain{
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 24px;
+    font-weight: 600;
+    display: block;
+    text-align: center;
+    margin: 35px;
+    cursor: pointer;
+}
+
+.aMain:hover{
+    border: 1px solid white;
+    color: white;
+    background-color: gray;
+}
+
+sup{
+    text-align: center;
+    display: block;
+}
+
+#upDoc{
+    height: 90px;
+}
+
+.pleft{
+    text-align: left;
+}
+
+#orgName{
+    border-bottom: 1px solid black;
+    float: left;
+}
+
+#chooseShow form label{
+    margin: 10px auto;
+    text-align: center;
+    display: inherit;
+}
+
+#chooseShow{
+    width: 100%;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+#emailBox{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 15px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#emailBox label{
+    text-align: center;
+    display: inherit;
+    margin: 10px auto;
+}
+
+#createUser label{
+    margin: 10px auto;
+    text-align: center;
+    display: inherit;
+}

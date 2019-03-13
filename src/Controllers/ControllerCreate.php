@@ -3,9 +3,9 @@
 namespace Src\Controllers;
 
 use Src\Core\AbstractController;
-use Src\Model\ModelMain;
+use Src\Model\ModelCreate;
 
-class ControllerMain extends AbstractController
+class ControllerCreate extends AbstractController
 {
 
     /**
@@ -14,7 +14,8 @@ class ControllerMain extends AbstractController
      */
     function actionIndex()
     {
-        $data = $this->getModel(new ModelMain());
-        $this->view->generate('main.php', 'wrapper.php', $data);
+        $data = $this->getModel(new ModelCreate());
+
+        $this->view->generate('create.php', 'wrapper.php', "main.css", $data);
     }
 }
